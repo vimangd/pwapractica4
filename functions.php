@@ -1,24 +1,39 @@
 <?php
-    function dbConnect() {
+    function dbConnect($config) {
         try {
-            return new PDO('mysql:host=127.0.0.1;dbname=sistema_de_calificaciones', 'root', 'ube2023');
+            // ORIGINAL return new PDO('mysql:host=127.0.0.1;dbname=sistema_de_calificaciones', 'root', 'ube2023');
+
+            return new PDO("{$config['type']}:host={$config['host']};dbname={$config['database']}", $config['user'], $config['password']);
+            
         } catch(PDOException $error){
             die($error->getMessage());
         }
     }
-    function dbConnectmysqli() {
-        return mysqli_connect('localhost', 'root', 'ube2023', 'sistema_de_calificaciones');
+
+
+    function dbConnectmysqli($config) {
+        
+        // ORIGINAL return mysqli_connect('localhost', 'root', 'ube2023', 'sistema_de_calificaciones');
+
+        return mysqli_connect($config['server'], $config['user'], $config['password'], $config['database']);
+
     }
+    
+    
     function getUsuariosByRol ($conexion, $rol){
         $queryUsuarios = $conexion->prepare("SELECT nombre, email, contrasena FROM usuarios WHERE rol=$rol");
         $queryUsuarios->execute();
         return $queryUsuarios->fetchAll(PDO::FETCH_OBJ);
     }
+    
+    
     function getImagenes ($conexion) {
         $queryImagenes = $conexion->prepare("SELECT id, enlace FROM imagenes");
         $queryImagenes->execute();
         return $queryImagenes->fetchAll(PDO::FETCH_OBJ);
     }
+    
+    
     function getEstudiantes($conexion) {
         $arreglo = [];
         $arreglo_id = [];
@@ -40,4 +55,5 @@
             $instituciones = $queryInstitucion->fetchAll(PDO::FETCH_OBJ);
         }
         return $instituciones;
+        
     }

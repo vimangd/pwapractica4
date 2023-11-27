@@ -2,32 +2,39 @@
 
     // ---- Determino si estoy en localhost de mi computador o en nube PRODUCCIÓN
 
-    if ( $_SERVER['HTTP_HOST'] == 'ubepwa.000webhostapp.com' ) // ---------- Equipo Local
+    if ( $_SERVER['HTTP_HOST'] == 'tarea1ubepwa.site' ) // ---------- Equipo Local
     {
         // ---------- BD Nube
 
-        define( "SERVIDOR"  , "localhost" ) ;
-
-        define( "BD_DATOS"  , "id21421658_ubepwa" ) ; 
-
-        define( "USUARIO"   , "id21421658_ubeadmin" ); 
-
-        define( "CLAVE"     , "Cesi@2022" );
+        return [
+            'database' => [
+                'type' => 'mysql',
+                'host' => '127.0.0.1',
+                'database' => 'u499008041_calificaciones',
+                'user' => 'u499008041_pwa',
+                'password' => 'Ubepwa2023',
+                'server' => 'localhost',
+                'site' => 'tarea1ubepwa.site',
+            ],
+        ];
+        
 
     }
     else // ------------------------------------------------- Nube
     {
         // ---------- BD Local
 
-        define( "SERVIDOR"  , "localhost" ) ;
-
-        define( "BD_DATOS"  , "01_calif" ) ;
-
-        define( "USUARIO"   , "root" );
-
-        define( "CLAVE"     , "" );
-
-        define( "SITIO"     , "http://localhost/01_calif/" );
+        return [
+            'database' => [
+                'type' => 'mysql',
+                'host' => '127.0.0.1',
+                'database' => 'sistema_de_calificaciones',
+                'user' => 'root',
+                'password' => 'ube2023',
+                'server' => 'localhost',
+                'site' => 'http://localhost/pwapractica4',
+            ],
+        ];
 
     }
 

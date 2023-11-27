@@ -1,6 +1,6 @@
 <?php
     require '../functions.php';
-    $conexion_mysql = dbConnectmysqli();
+    $conexion_mysql = dbConnectmysqli($config['database']);
     
     if (isset($_POST['registrar'])) {
         if (strlen($_POST['name']) >= 1 && 
